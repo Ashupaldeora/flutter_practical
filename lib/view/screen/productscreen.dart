@@ -93,7 +93,9 @@ class _productscreenState extends State<productscreen> {
                                   ),
                                   IconButton(
                                       onPressed: () {
-                                        showproduct[0]['quantity']++;
+                                        setState(() {
+                                          showproduct[0]['quantity']++;
+                                        });
                                       },
                                       icon: Icon(Icons.add)),
                                 ],
