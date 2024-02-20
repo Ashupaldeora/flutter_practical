@@ -94,6 +94,8 @@ class _cartscreenState extends State<cartscreen> {
                                             setState(() {
                                               if (cart[index]['quantity'] > 1) {
                                                 cart[index]['quantity']--;
+                                              } else {
+                                                cart.removeAt(index);
                                               }
                                             });
                                           },
