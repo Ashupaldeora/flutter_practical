@@ -17,7 +17,7 @@ class _homescreenState extends State<homescreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -238,7 +238,7 @@ class _homescreenState extends State<homescreen> {
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
                                             color: Colors.black)),
-                                    Text('${product1[index]['price']}',
+                                    Text('\$${product1[index]['price']}',
                                         style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
@@ -254,47 +254,55 @@ class _homescreenState extends State<homescreen> {
                   Column(
                     children: List.generate(
                         product2.length,
-                        (index) => Container(
-                              alignment: Alignment.topCenter,
-                              height: 270,
-                              width: 175,
-                              margin: EdgeInsets.only(bottom: 10),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    height: 200,
-                                    width: 175,
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurStyle: BlurStyle.solid,
-                                          color: Colors.grey,
-                                          blurRadius: 5,
+                        (index) => InkWell(
+                              onTap: () {
+                                setState(() {
+                                  showproduct[0] = product2[index];
+                                  Navigator.of(context).pushNamed('/product');
+                                });
+                              },
+                              child: Container(
+                                alignment: Alignment.topCenter,
+                                height: 270,
+                                width: 175,
+                                margin: EdgeInsets.only(bottom: 10),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      width: 175,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurStyle: BlurStyle.solid,
+                                            color: Colors.grey,
+                                            blurRadius: 5,
+                                          ),
+                                        ],
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Image.asset(
+                                          product2[index]['image'],
+                                          fit: BoxFit.cover,
                                         ),
-                                      ],
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: Image.asset(
-                                        product2[index]['image'],
-                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                  ),
-                                  Text(product2[index]['name'],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black)),
-                                  Text('${product2[index]['price']}',
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.grey.shade700)),
-                                ],
+                                    Text(product2[index]['name'],
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black)),
+                                    Text('\$${product2[index]['price']}',
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.grey.shade700)),
+                                  ],
+                                ),
                               ),
                             )),
                   ),

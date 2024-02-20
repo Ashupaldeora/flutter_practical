@@ -77,16 +77,25 @@ class _productscreenState extends State<productscreen> {
                               child: Row(
                                 children: [
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          if (showproduct[0]['quantity'] > 1) {
+                                            showproduct[0]['quantity']--;
+                                          }
+                                        });
+                                      },
                                       icon: Icon(Icons.remove)),
                                   Text(
-                                    "1",
+                                    "${showproduct[0]['quantity']}",
                                     style: GoogleFonts.poppins(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 16),
                                   ),
                                   IconButton(
-                                      onPressed: () {}, icon: Icon(Icons.add)),
+                                      onPressed: () {
+                                        showproduct[0]['quantity']++;
+                                      },
+                                      icon: Icon(Icons.add)),
                                 ],
                               ),
                             )

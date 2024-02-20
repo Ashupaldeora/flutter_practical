@@ -22,7 +22,9 @@ class _cartscreenState extends State<cartscreen> {
               leading: IconButton(
                   onPressed: () {
                     setState(() {
-                      Navigator.of(context).pop();
+                      setState(() {
+                        Navigator.of(context).pop();
+                      });
                     });
                   },
                   icon: Icon(Icons.arrow_back_ios)),
@@ -88,16 +90,26 @@ class _cartscreenState extends State<cartscreen> {
                                   child: Row(
                                     children: [
                                       IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              if (cart[index]['quantity'] > 1) {
+                                                cart[index]['quantity']--;
+                                              }
+                                            });
+                                          },
                                           icon: Icon(Icons.remove)),
                                       Text(
-                                        "1",
+                                        "${cart[index]['quantity']}",
                                         style: GoogleFonts.poppins(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16),
                                       ),
                                       IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              cart[index]['quantity']++;
+                                            });
+                                          },
                                           icon: Icon(Icons.add)),
                                     ],
                                   ),
@@ -112,6 +124,11 @@ class _cartscreenState extends State<cartscreen> {
                           ],
                         ),
                       )),
+            ),
+            Container(
+              child: Column(
+                children: [],
+              ),
             )
           ],
         ),
